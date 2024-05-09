@@ -13,7 +13,7 @@ from django.http import HttpRequest
 from django.template import Template, Context
 from django.test import TestCase
 from django.utils.six import StringIO
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .models import Category, Quiz, Progress, Sitting, SubCategory
 from .views import (anon_session_score, QuizListView, CategoriesListView,
