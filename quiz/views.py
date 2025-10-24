@@ -4,9 +4,8 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import FormView
 
-from .forms import QuestionForm, EssayForm
+from .forms import QuestionForm
 from .models import Quiz, Progress, Sitting, Question
-from essay.models import Essay_Question
 
 
 class QuizTake(FormView):
@@ -41,10 +40,7 @@ class QuizTake(FormView):
             self.question = self.anon_next_question()
             self.progress = self.anon_sitting_progress()
 
-        if self.question.__class__ is Essay_Question:
-            form_class = EssayForm
-        else:
-            form_class = self.form_class
+        form_class = self.form_class
 
         return form_class(**self.get_form_kwargs())
 
