@@ -564,11 +564,6 @@ class Question(models.Model):
                                      null=True,
                                      on_delete=models.CASCADE)
 
-    figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
-                               blank=True,
-                               null=True,
-                               verbose_name=_("Figure"))
-
     content = models.CharField(max_length=1000,
                                blank=False,
                                help_text=_("Enter the question text that "
