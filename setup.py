@@ -29,8 +29,6 @@ setup(
     ],
     install_requires=[
         'django-model-utils>=3.1.1',
-        'Django>=1.8.19',
-        'Pillow>=4.0.0'
-    ],
-    test_suite='runtests.runtests'
+        'Django>=1.8.19'
+    ]
 )
