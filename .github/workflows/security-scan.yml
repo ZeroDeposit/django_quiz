@@ -1,0 +1,22 @@
+# .github/workflows/security-scan.yml
+#
+# Calls the shared security scanning workflow.
+# Secret scanning (Gitleaks) and SAST (Semgrep) are defined centrally.
+# See: zerodeposit/zd-utils/.github/workflows/security-scan.yml
+
+name: Security Scan
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security-scan:
+    # Mutable branch ref is intentional: zd-utils is an internal repo and we trust our own supply
+    # chain - utils uses a SHA on the external dependencies in the workflow. Pinning to a SHA would
+    # require updating all caller repos on every change to the shared workflow.
+    uses: zerodeposit/zd-utils/.github/workflows/security-scan.yml@develop  # nosemgrep: yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag
+    # secrets: inherit is intentional: zd-utils is an internal repo and we trust our own supply
+    # chain.
+    # The called workflow only uses GITHUB_TOKEN and GITLEAKS_LICENSE.
+    secrets: inherit  # nosemgrep: yaml.github-actions.security.secrets-inherit.secrets-inherit
